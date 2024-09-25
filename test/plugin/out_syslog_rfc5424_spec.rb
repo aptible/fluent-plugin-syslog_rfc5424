@@ -37,7 +37,7 @@ class OutSyslogRFC5424Test < Test::Unit::TestCase
     stub(IO).select(nil, [socket], nil, 1) { ["not an error"] }
     
     any_instance_of(Fluent::Plugin::OutSyslogRFC5424) do |fluent_plugin|
-      mock(fluent_plugin).socket_create(:tls, "example.com", 123, {:insecure=>false, :verify_fqdn=>true, :cert_paths=>nil}).returns(socket)
+      mock(fluent_plugin).socket_create(:tls, "example.com", 123, insecure: false, verify_fqdn: true, cert_paths: nil).returns(socket)
     end
 
     output_driver.run do
@@ -64,8 +64,8 @@ class OutSyslogRFC5424Test < Test::Unit::TestCase
     mock(IO).select(nil, [good_socket], nil, 1) { ["not an error"] }
 
     any_instance_of(Fluent::Plugin::OutSyslogRFC5424) do |fluent_plugin|
-      mock(fluent_plugin).socket_create(:tls, "example.com", 123, {:insecure=>false, :verify_fqdn=>true, :cert_paths=>nil}).returns(bad_socket)
-      mock(fluent_plugin).socket_create(:tls, "example.com", 123, {:insecure=>false, :verify_fqdn=>true, :cert_paths=>nil}).returns(good_socket)
+      mock(fluent_plugin).socket_create(:tls, "example.com", 123, insecure: false, verify_fqdn: true, cert_paths: nil).returns(bad_socket)
+      mock(fluent_plugin).socket_create(:tls, "example.com", 123, insecure: false, verify_fqdn: true, cert_paths: nil).returns(good_socket)
     end
 
     output_driver.run(shutdown: false, force_flush_retry: true) do
@@ -88,7 +88,7 @@ class OutSyslogRFC5424Test < Test::Unit::TestCase
     stub(IO).select(nil, [socket], nil, 1) { ["not an error"] }
 
     any_instance_of(Fluent::Plugin::OutSyslogRFC5424) do |fluent_plugin|
-      mock(fluent_plugin).socket_create(:tcp, "example.com", 123, {}).returns(socket)
+      mock(fluent_plugin).socket_create(:tcp, "example.com", 123).returns(socket)
     end
 
     output_driver.run do
@@ -112,7 +112,7 @@ class OutSyslogRFC5424Test < Test::Unit::TestCase
     stub(IO).select(nil, [socket], nil, 1) { ["not an error"] }
 
     any_instance_of(Fluent::Plugin::OutSyslogRFC5424) do |fluent_plugin|
-      mock(fluent_plugin).socket_create(:tls, "example.com", 123, {:insecure=>true, :verify_fqdn=>false, :cert_paths=>nil}).returns(socket)
+      mock(fluent_plugin).socket_create(:tls, "example.com", 123, insecure: true, verify_fqdn: false, cert_paths: nil).returns(socket)
     end
 
     output_driver.run do
@@ -136,7 +136,7 @@ class OutSyslogRFC5424Test < Test::Unit::TestCase
     stub(IO).select(nil, [socket], nil, 1) { ["not an error"] }
 
     any_instance_of(Fluent::Plugin::OutSyslogRFC5424) do |fluent_plugin|
-      mock(fluent_plugin).socket_create(:tls, "example.com", 123, {:insecure=>false, :verify_fqdn=>true, :cert_paths=>"supertrustworthy"}).returns(socket)
+      mock(fluent_plugin).socket_create(:tls, "example.com", 123, insecure: false, verify_fqdn: true, cert_paths: "supertrustworthy").returns(socket)
     end
 
     output_driver.run do
@@ -158,7 +158,7 @@ class OutSyslogRFC5424Test < Test::Unit::TestCase
     stub(IO).select(nil, [socket], nil, 1) { ["not an error"] }
 
     any_instance_of(Fluent::Plugin::OutSyslogRFC5424) do |fluent_plugin|
-      mock(fluent_plugin).socket_create(:tls, "example.com", 123, {:insecure=>false, :verify_fqdn=>true, :cert_paths=>nil}).returns(socket)
+      mock(fluent_plugin).socket_create(:tls, "example.com", 123, insecure: false, verify_fqdn: true, cert_paths: nil).returns(socket)
     end
 
     output_driver.run do
