@@ -1,0 +1,19 @@
+name: test
+
+on:
+  pull_request:
+  push:
+    branches: [ aptible ]
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2' # Compatibility with fluentd:v1.17-debian-1 docker image
+      - run: bundle install
+      - run: bundle exec rake
